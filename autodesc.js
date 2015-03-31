@@ -580,8 +580,8 @@ wd_auto_desc.init() ;
 
 var wd_auto_desc_wd = {
 
-	always_show : false ,
-	style : 'background-color:#DBEBFF;padding:2px' ,
+	always_show : true ,
+	style : 'background-color:#FFE0E0;padding:2px' ,
 
 	init : function () {
 		var self = this ;
