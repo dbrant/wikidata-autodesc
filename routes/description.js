@@ -26,7 +26,7 @@ router.get('/:qnum', function (req, res) {
 	    q: req.params.qnum,
 		lang: "en",
         mode: "short",
-        links: "text",
+        links: "text"
 	};
 
 	autodesc.getDescription ( params , function ( text ) {
