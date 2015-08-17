@@ -23,22 +23,23 @@ var app;
  */
 router.get('/:qnum', function (req, res) {
     var params = {
-	    q: req.params.qnum,
-		lang: "en",
+        q: req.params.qnum,
+        lang: "en",
         mode: "short",
         links: "text"
-	};
+    };
 
-	autodesc.getDescription ( params , function ( text ) {
-		var j = {
-			call : params,
-			q : params.q,
-			label : autodesc.wd.items[params.q].getLabel(params.lang) ,
-			manual_description : autodesc.wd.items[params.q].getDesc(params.lang) ,
-			result : text
-		};
-		res.status(200).json(j).end();
-	});
+    autodesc.getDescription ( params , function ( text ) {
+        var j = {
+            q : params.q
+        };
+        if (undefined !== autodesc.wd.items[params.q]) {
+            j.label = autodesc.wd.items[params.q].getLabel(params.lang);
+            j.manual_description = autodesc.wd.items[params.q].getDesc(params.lang);
+        }
+        j.result = text;
+        res.status(200).json(j).end();
+    });
 });
 
 module.exports = function (appObj) {
