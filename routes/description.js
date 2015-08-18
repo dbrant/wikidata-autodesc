@@ -1,11 +1,8 @@
 
 'use strict';
 
-var BBPromise = require('bluebird');
-var preq = require('preq');
 var sUtil = require('../lib/util');
-var util = require('util');
-var autodesc = require('../lib/auto_long_desc');
+var autodesc = require('../lib/short_autodesc');
 
 /**
  * The main router object
@@ -23,19 +20,16 @@ var app;
  */
 router.get('/:qnum', function (req, res) {
     var params = {
-        q: req.params.qnum,
-        lang: "en",
-        mode: "short",
-        links: "text"
+        lang: "en"
     };
-
-    autodesc.getDescription ( params , function ( text ) {
+    var qnum = req.params.qnum;
+    autodesc.ad.loadItem ( qnum , params , function ( text ) {
         var j = {
-            q : params.q
+            q : qnum
         };
-        if (undefined !== autodesc.wd.items[params.q]) {
-            j.label = autodesc.wd.items[params.q].getLabel(params.lang);
-            j.manual_description = autodesc.wd.items[params.q].getDesc(params.lang);
+        if (undefined !== autodesc.wd.items[qnum]) {
+            j.label = autodesc.wd.items[qnum].getLabel(params.lang);
+            j.manual_description = autodesc.wd.items[qnum].getDesc(params.lang);
         }
         j.result = text;
         res.status(200).json(j).end();
