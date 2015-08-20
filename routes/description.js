@@ -23,7 +23,7 @@ router.get('/:qnum', function (req, res) {
         lang: "en"
     };
     var qnum = req.params.qnum;
-    autodesc.ad.loadItem ( qnum , params , function ( text ) {
+    autodesc.ad.getDescription ( qnum , params , function ( text ) {
         var j = {
             q : qnum
         };
