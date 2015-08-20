@@ -2,7 +2,7 @@
 'use strict';
 
 var sUtil = require('../lib/util');
-var autodesc = require('../lib/short_autodesc');
+var autodesc = require('../lib/autodesc');
 
 /**
  * The main router object
