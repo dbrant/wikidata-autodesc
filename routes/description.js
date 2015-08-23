@@ -29,9 +29,9 @@ router.get('/:title', function (req, res) {
         };
         if (undefined !== autodesc.wd.items[qnum]) {
             j.title = autodesc.wd.items[qnum].getLabel(params.lang);
-            j.manual_description = autodesc.wd.items[qnum].getDesc(params.lang);
+            //j.manual_description = autodesc.wd.items[qnum].getDesc(params.lang);
         }
-        j.auto_description = text;
+        j.description = text;
         res.status(200).json(j).end();
     });
 });
