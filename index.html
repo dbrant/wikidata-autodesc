@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset=utf-8>
+    <meta name="theme-color" content="#557755" />
+    <title>FileViewer</title>
+    <link rel="stylesheet" href="main.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400&amp;subset=latin" type="text/css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="autodesc_bundle.js"></script>
+    <script>
+
+        $(document).ready(function() {
+
+            $("#getDescriptionButton").on("click", function(event) {
+
+                $("#basicInfo").html("");
+
+                window.getWikidataDescription($("#titleInput").val(), function(qnum, label, manual_desc, text) {
+                    var basicInfoDiv = $("#basicInfo");
+
+                    var resultStr = text;
+
+                    basicInfoDiv.html(resultStr);
+                });
+
+            });
+
+        });
+
+    </script>
+</head>
+<body>
+
+    <h1 class="centered">AutoDesc</h1>
+
+    <div class="centered" style="margin-top: 64px;">
+        <input type="text" id="titleInput" name="titleInputText" />
+        <span class="buttonLink"><a href="#" id="getDescriptionButton">Describe!</a></span>
+    </div>
+
+    <div class="infocontainer">
+        <div class="basicinfo" id="basicInfo">
+
+        </div>
+    </div>
+
+    <div class="footer centered">
+        Copyright &copy; 2016 <a href="http://dmitrybrant.com">Dmitry Brant</a>.<br /><a href="https://github.com/dbrant/fileviewer">Source code</a> and <a href="https://github.com/dbrant/fileviewer/blob/master/LICENSE">license</a> on GitHub.
+    </div>
+</body>
+</html>
